@@ -36,4 +36,4 @@ class ProyectoAdmin(admin.ModelAdmin):
     inlines = (ListadoInLine,)
 
 class TrabajadorAdmin (admin.ModelAdmin):
-inlines = (ListadoInLine,)
+    inlines = (ListadoInLine,)

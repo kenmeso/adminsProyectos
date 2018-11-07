@@ -22,18 +22,18 @@ class Trabajador(models.Model):
     def __str__(self):
         return self.nombre
 
-class Listado(models.Model):
+class Lista(models.Model):
     proyecto = models.ForeignKey(Proyecto, on_delete=models.CASCADE)
     trabajador = models.ForeignKey(Trabajador, on_delete=models.CASCADE)
     extra = 1
 
-class ListadoInLine(admin.TabularInline):
-    model = Listado
+class ListaInLine(admin.TabularInline):
+    model = Lista
 #muestra un campo extra al momento de insertar, como indicación que se pueden ingresar N actores.
     extra = 1
 
 class ProyectoAdmin(admin.ModelAdmin):
-    inlines = (ListadoInLine,)
+    inlines = (ListaInLine,)
 
 class TrabajadorAdmin (admin.ModelAdmin):
-    inlines = (ListadoInLine,)
+    inlines = (ListaInLine,)

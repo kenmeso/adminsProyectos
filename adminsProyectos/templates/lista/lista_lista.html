@@ -1,11 +1,11 @@
 {% extends 'lista/base.html' %}
 
 {% block content %}
-    <h1>Listado de Clientes</h1>
+    <h1>Listado de Trabajadores</h1>
     <table class="table">
       <thead class="thead-light">
         <tr>
-          <th scope="col">Nit</th>
+          <th scope="col">DPI</th>
           <th scope="col">Cliente</th>
           <th scope="col">Direccion</th>
           <th scope="col">Telefono</th>
@@ -13,17 +13,17 @@
         </tr>
       </thead>
       <tbody>
-        {% for cliente in clientes %}
+        {% for trabajado in trabajador %}
         <tr>
-          <th scope="row">{{ cliente.nit }}</th>
-          <td>{{ cliente.nombre }} {{ cliente.apellido }}</td>
-          <td>{{ cliente.direccion }}</td>
-          <td>{{ cliente.telefono }}</td>
+          <th scope="row">{{ trabajado.dpi }}</th>
+          <td>{{ trabajado.nombre }} {{ trabajado.apellido }}</td>
+          <td>{{ trabajado.direccion }}</td>
+          <td>{{ trabajado.telefono }}</td>
           <td>
             <div class="" role="" aria-label="Basic example">
-              <a href="{% url 'factura_detalle' pk=cliente.pk %}" type="button" class="btn btn-outline-info" role="button" aria-pressed="true">Facturas</a>
-              <a href="{% url 'factura_editar' pk=cliente.pk %}"s type="button" class="btn btn-outline-success" role="button" aria-pressed="true">Editar</a>
-              <a href="{% url 'factura_remove' pk=cliente.pk %}" type="button" class="btn btn-outline-danger" role="button" aria-pressed="true">Eliminar</a>
+              <a href="{% url 'lista_detalle' pk=trabajado.pk %}" type="button" class="btn btn-outline-info" role="button" aria-pressed="true">Ver detalle</a>
+              <a href="{% url 'lista_editar' pk=trabajado.pk %}"s type="button" class="btn btn-outline-success" role="button" aria-pressed="true">Editar</a>
+              <a href="{% url 'lista_remove' pk=trabajado.pk %}" type="button" class="btn btn-outline-danger" role="button" aria-pressed="true">Eliminar</a>
             </div>
           </td>
         </tr>

@@ -1,22 +1,23 @@
 {% extends 'lista/base.html' %}
 
 {% block content %}
-    <h1>Factura del Cliente</h1>
-    <h2>Nombre: {{ cliente.nombre }} {{ cliente.apellido }}</h2>
-    <h2>NIT: {{ cliente.nit }}</h2>
+    <h1>Proyectos y sus Responsables</h1>
+    <h2>Nombre: {{ trabajador.nombre }} {{ trabajador.apellido }}</h2>
+    <h2>DPI: {{ trabajador.dpi }}</h2>
+    <h2>E-Mail: {{ trabajador.email }}</h2>
     <br>
     <table class="table">
       <thead class="thead-light">
         <tr>
-          <th scope="col">Numero</th>
-          <th scope="col">Producto</th>
+          <th scope="col">ID</th>
+          <th scope="col">Proyecto</th>
         </tr>
       </thead>
       <tbody>
-        {% for factura in facturas %}
+        {% for list in lista %}
         <tr>
-          <td>{{factura.pk}}</td>
-          <td>{{factura.producto}}</td>
+          <td>{{list.pk}}</td>
+          <td>{{list.proyecto}}</td>
         </tr>
         {% endfor %}
       </tbody>

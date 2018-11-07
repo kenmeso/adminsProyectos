@@ -1,9 +1,13 @@
 {% extends 'lista/base.html' %}
 
 {% block content %}
-    <h1>Datos del producto</h1>
-    <form method="POST" class="post-form">{% csrf_token %}
-        {{ formulario.as_p }}
-        <button type="submit" class="save btn btn-default">Guardar</button>
+<div class="card border-success mb-3" style="max-width: 30rem;">
+  <form method="POST" class="post-form">{% csrf_token %}
+    <div class="card-header">Crear Proyecto</div>
+      <div class="card-body">
+        <h4 class="card-title">{{ formulario.as_p }}</h4>
+      </div>
+    <button type="submit" class="btn btn-primary">Guardar</button>
     </form>
+</div>
 {% endblock %}

@@ -4,21 +4,24 @@ from .forms import TrabajadorForm, ProyectoForm, ListaForm
 from adminsProyectos.models import Proyecto, Lista, Trabajador
 from django.contrib.auth.decorators import login_required
 
+def index(request):
+    return render(request, 'lista/index.html')
+
 @login_required
 def lista_nueva(request):
     if request.method == "POST":
         formulario = TrabajadorForm(request.POST)
         if formulario.is_valid():
             trabajador = Trabajador.objects.create(
-            nit = formulario.cleaned_data['nit'],
+            dpi = formulario.cleaned_data['dpi'],
             nombre = formulario.cleaned_data['nombre'],
             apellido = formulario.cleaned_data['apellido'],
             direccion = formulario.cleaned_data['direccion'],
             email = formulario.cleaned_data['email'],
             telefono = formulario.cleaned_data['telefono'])
             for proyecto_id in request.POST.getlist('proyectos'):
-                factura = Factura(proyecto_id=proyecto_id, trabajador_id = trabajador.id)
-                factura.save()
+                lista = Lista(proyecto_id=proyecto_id, trabajador_id = trabajador.id)
+                lista.save()
             messages.add_message(request, messages.SUCCESS, 'Listado creado con éxito.')
             return redirect('lista_lista')
     else:
@@ -44,7 +47,7 @@ def lista_editar(request, pk):
         if formulario.is_valid():
             trabajador = formulario.save()
             trabajador.save()
-            return redirect('listaa_lista')
+            return redirect('lista_lista')
     else:
         formulario = TrabajadorForm(instance=trabajador)
     return render(request, 'lista/lista_editar.html', {'formulario': formulario})
@@ -67,8 +70,8 @@ def proyecto_nuevo(request):
         if formulario.is_valid():
             proyecto = Proyecto.objects.create(
             nombre = formulario.cleaned_data['nombre'],
-            precio = formulario.cleaned_data['precio'],
-            stock = formulario.cleaned_data['stock'])
+            descripcion = formulario.cleaned_data['descripcion'],
+            importancia = formulario.cleaned_data['importancia'])
             messages.add_message(request, messages.SUCCESS, 'Proyecto creado con éxito.')
             return redirect('proyecto_lista')
     else:
@@ -77,9 +80,9 @@ def proyecto_nuevo(request):
 
 @login_required
 def proyecto_editar(request, pk):
-    proyecto = get_object_or_404(Producto, pk=pk)
+    proyecto = get_object_or_404(Proyecto, pk=pk)
     if request.method == 'POST':
-        formulario = ProductoForm(request.POST, request.FILES, instance=proyecto)
+        formulario = ProyectoForm(request.POST, request.FILES, instance=proyecto)
         if formulario.is_valid():
             proyecto = formulario.save()
             proyecto.save()

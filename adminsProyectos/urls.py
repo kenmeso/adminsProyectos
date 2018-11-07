@@ -4,7 +4,7 @@ from . import views
 
 urlpatterns = [
     url(r'^lista/nueva/$', views.lista_nueva, name='lista_nueva'),
-    path('', views.lista_lista, name='lista_lista'),
+    path('', views.index, name='index'),
     path('lista/lista', views.lista_lista, name='lista_lista'),
     path('lista/<int:pk>/editar/', views.lista_editar, name='lista_editar'),
     url(r'^lista/(?P<pk>\d+)/remove/$', views.lista_remove, name='lista_remove'),

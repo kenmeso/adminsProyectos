@@ -92,4 +92,4 @@ def proyecto_editar(request, pk):
 def proyecto_remove(request, pk):
     proyecto = get_object_or_404(Proyecto, pk=pk)
     proyecto.delete()
-return redirect('proyecto_lista')
+    return redirect('proyecto_lista')

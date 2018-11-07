@@ -17,7 +17,7 @@ class Trabajador(models.Model):
     direccion = models.TextField()
     telefono = models.CharField(max_length=8)
     email = models.EmailField()
-    proyectos = models.ManyToManyField(Proyecto, through='Listado')
+    proyectos = models.ManyToManyField(Proyecto, through='Lista')
 
     def __str__(self):
         return self.nombre
